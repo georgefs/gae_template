@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+
+import appcfg
+
+appcfg.fix_sys_path()
+
+import os
+import yaml
+import re
+
+cur_path = os.path.dirname(os.path.abspath(__file__))
+
+app_yaml = open(os.path.join(cur_path, 'app.yaml')).read()
+data = yaml.load_all(app_yaml).next()
+libs = data.get('libraries', [])
+
+app_path = os.path.join(cur_path, 'site-packages/app.pth')
+
+try:
+    os.remove(app_path)
+except:
+    pass
+
+
+import google
+app_path_file = open(app_path, 'w+')
+google_path = os.path.dirname(google.__file__)
+lib_path = os.path.join(google_path, '../lib')
+
+third_part_packages = os.listdir(lib_path)
+
+for lib in libs:
+    name = lib.get('name')
+    version = lib.get('version')
+
+    data = (
+        filter(lambda pkg: re.search("{}.*{}".format(name, version), pkg), third_part_packages) or
+        filter(lambda pkg: pkg.startswith(name), third_part_packages)
+    )
+
+    data.sort()
+    try:
+        result = data[-1]
+        pkg_path = os.path.join(lib_path, result)
+        app_path_file.write("{}\n".format(pkg_path))
+    except:
+        pass
+
+app_path_file.close()
+
+

@@ -1,0 +1,47 @@
+GAE template
+===
+
+Description
+---
+    使用appengine的時候, 常常會虛要把外部的package 複製貼上到自己的project裡面.. 這讓我感覺我又回到了php的年代.. 讓我非常不爽..
+    所以我做一個template, 讓我的appengine 的project 可以搭配virtualenv 使用pip 管理appengine 的packages
+
+    ps: 目前僅for linux
+
+Structure
+---
+```
+├── appengine_config.py 
+├── apps                  
+│   └── __init__.py
+├── app.yaml
+├── build
+├── easy_install
+├── pip
+├── readme.mkd
+└── site-packages
+```
+
+Files
+---
+
+file| description|
+---|---|
+apps| 主要目錄, 我會把程式都放在這邊|
+site-packages| package 的存放目錄|
+build| 分析app.yaml 的libs, 把path 加入site-packages|
+easy_install| 安裝package ~>site-packages|
+pip| pip 的指令!, 不過安裝還是請使用easy_install|
+
+Usega
+---
+
+command| action|
+---|---|
+`./build`| 分析app.yaml的third part lib, 產生app.pth 到site-packages|
+`./easy_install package`| 用法基本上一樣, 只要在後面加入package就可以了|
+`./pip args`|和pip一樣, 不過有加入site-packages的路徑|
+
+
+
+

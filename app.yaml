@@ -1,0 +1,11 @@
+application: your appid
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: false
+
+skip_files:
+- ^site-packages/.*\.egg-info(/.*)?
+- ^site-packages/app.pth$
+
+
