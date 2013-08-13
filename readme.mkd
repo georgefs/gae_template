@@ -3,10 +3,11 @@ GAE template
 
 Description
 ---
-    使用appengine的時候, 常常會虛要把外部的package 複製貼上到自己的project裡面.. 這讓我感覺我又回到了php的年代.. 讓我非常不爽..
-    所以我做一個template, 讓我的appengine 的project 可以搭配virtualenv 使用pip 管理appengine 的packages
 
-    ps: 目前僅for linux
+使用appengine的時候, 常常會虛要把外部的package 複製貼上到自己的project裡面.. 這讓我感覺我又回到了php的年代.. 讓我非常不爽..
+所以我做一個template, 讓我的appengine 的project 可以搭配virtualenv 使用pip 管理appengine 的packages
+
+ps: 目前僅for linux
 
 Structure
 ---
